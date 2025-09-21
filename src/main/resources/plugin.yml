@@ -1,0 +1,14 @@
+name: ResourcePackManager
+version: '1.0'
+main: com.teychman.resourcePackManager.ResourcePackManager
+api-version: '1.20'
+authors: [ TeychMan ]
+website: "TG: @Teych_Man | DS: the_atns"
+
+commands:
+  resourcepack:
+    description: Управление ресурс-паком
+    usage: /<command> [reload|apply]
+    aliases: [rp]
+    permission: resourcepack.use
+    permission-message: "§f§l⌈§c§l⟡§f§l⌋ §cУ вас нет прав на использование этой команды!"
