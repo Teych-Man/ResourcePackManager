@@ -59,9 +59,16 @@ public record onPlayerJoin(ResourcePackManager plugin) implements Listener {
                 break;
 
             case FAILED_DOWNLOAD:
-                plugin.getLogger().fine("У игрока " + event.getPlayer() + " произошла ошибка при загрузке ресурспака");
-                player.sendMessage("§cОшибка загрузки ресурс-пака!");
+                plugin.getLogger().warning("У игрока " + event.getPlayer() + " произошла ошибка при загрузке ресурспака");
+
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        player.kickPlayer("§cУ вас возникла ошибка с загрузкой ресурспака!\n\n§eОбратитесь в поддержку:\n§bTG | @bangun_minecraft_bot\n§1Discord | https://discord.gg/k72TC2rWwe");
+                    }
+                }.runTaskLater(plugin, 5*20);
                 break;
+
             case ACCEPTED:
                 plugin.getLogger().fine("Игрок " + event.getPlayer() + " принял ресурспак, идет загрузка");
                 break;

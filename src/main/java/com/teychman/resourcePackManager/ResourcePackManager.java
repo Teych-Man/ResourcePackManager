@@ -19,8 +19,8 @@ public final class ResourcePackManager extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvents(new onPlayerJoin(this), this);
 
-        Objects.requireNonNull(getCommand("resourcepack")).setExecutor(new Main());
-        Objects.requireNonNull(getCommand("resourcepack")).setTabCompleter(new Main());
+        Objects.requireNonNull(getCommand("resourcepack")).setExecutor(new Main(this));
+        Objects.requireNonNull(getCommand("resourcepack")).setTabCompleter(new Main(this));
 
 
         getLogger().info("§a╔═════════════════════════════§r");

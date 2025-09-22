@@ -10,5 +10,5 @@ commands:
     description: Управление ресурс-паком
     usage: /<command> [reload|apply]
     aliases: [rp]
-    permission: resourcepack.use
-    permission-message: "§f§l⌈§c§l⟡§f§l⌋ §cУ вас нет прав на использование этой команды!"
+    permission: resourcepack.admin
+    permission-message: "§f§l╹§c§l⟡§f§l╻ §cУ вас нет прав на использование этой команды!"
