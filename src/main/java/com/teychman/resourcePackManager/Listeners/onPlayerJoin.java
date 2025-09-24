@@ -45,17 +45,18 @@ public record onPlayerJoin(ResourcePackManager plugin) implements Listener {
 
         switch (event.getStatus()) {
             case SUCCESSFULLY_LOADED:
-                plugin.getLogger().fine("Игрок " + event.getPlayer() + " успешно загрузил ресурспак");
+                plugin.getLogger().info("[DEBUG] Игрок " + event.getPlayer() + " успешно загрузил ресурспак");
                 break;
             case DECLINED:
-                plugin.getLogger().fine("Игрок " + event.getPlayer() + " отклонил ресурспак и был кикнут");
+                plugin.getLogger().info("[DEBUG] Игрок " + event.getPlayer() + " отклонил ресурспак и был кикнут");
 
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        player.kickPlayer("§cВы отклонили ресурс-пак! Без него играть не получится");
+                        player.kickPlayer(
+                                "§cВы отклонили ресурс-пак!\n§cДля игры он обязателен.\n\n§7Включите ресурспак: Сервера → BANGUN → Настроить → Ресурспак: Включен");
                     }
-                }.runTaskLater(plugin, 5*20);
+                }.runTaskLater(plugin, plugin.getConfig().getInt("time_to_kick", 5) * 20L);
                 break;
 
             case FAILED_DOWNLOAD:
@@ -64,13 +65,14 @@ public record onPlayerJoin(ResourcePackManager plugin) implements Listener {
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        player.kickPlayer("§cУ вас возникла ошибка с загрузкой ресурспака!\n\n§eОбратитесь в поддержку:\n§bTG | @bangun_minecraft_bot\n§1Discord | https://discord.gg/k72TC2rWwe");
+                        player.kickPlayer(
+                                "§cУ вас возникла ошибка с загрузкой ресурспака!\n\n§eОбратитесь в поддержку:\n§bTelegram | @bangun_minecraft_bot\n§1Discord | https://discord.gg/k72TC2rWwe");
                     }
                 }.runTaskLater(plugin, 5*20);
                 break;
 
             case ACCEPTED:
-                plugin.getLogger().fine("Игрок " + event.getPlayer() + " принял ресурспак, идет загрузка");
+                plugin.getLogger().info("[DEBUG] Игрок " + event.getPlayer() + " принял ресурспак, идет загрузка");
                 break;
         }
     }
